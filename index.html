@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Домашня кухня</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+
+<header class="hero">
+
+<div class="hero-content">
+
+<h1>Домашня їжа</h1>
+
+<h2>Смачні домашні страви</h2>
+
+<p>
+Справжня домашня кухня на замовлення — <br>
+готуємо з любов'ю ❤️
+</p>
+
+<a href="#menu" class="hero-button">Меню</a>
+
+</div>
+
+</header>
+
+
+
+<section id="menu" class="menu">
+
+<h2>Меню</h2>
+
+<div class="menu-grid">
+
+<div class="menu-card" data-menu="pelmeni">
+<img src="img/pelmeni.jpg">
+<h3>Пельмені / Вареники</h3>
+</div>
+
+<div class="menu-card" data-menu="zrazy">
+<img src="img/zrazy.jpg">
+<h3>Зрази / Риба</h3>
+</div>
+
+<div class="menu-card" data-menu="kotlety">
+<img src="img/kotlety.jpg">
+<h3>Котлети</h3>
+</div>
+
+<div class="menu-card" data-menu="salaty">
+<img src="img/salaty.jpg">
+<h3>Салати</h3>
+</div>
+
+<div class="menu-card" data-menu="golubci">
+<img src="img/golubci.jpg">
+<h3>Голубці / Перець</h3>
+</div>
+
+<div class="menu-card" data-menu="tartaletky">
+<img src="img/tartaletky.jpg">
+<h3>Тарталетки / Торт</h3>
+</div>
+
+<div class="menu-card" data-menu="chebureky">
+<img src="img/chebureky.jpg">
+<h3>Чебуреки / Бендерики</h3>
+</div>
+
+<div class="menu-card" data-menu="keksy">
+<img src="img/keksy.jpg">
+<h3>Кекси</h3>
+</div>
+
+<div class="menu-card" data-menu="syrnyky">
+<img src="img/syrnyky.jpg">
+<h3>Сирники / Запіканка</h3>
+</div>
+
+<div class="menu-card" data-menu="mlynci">
+<img src="img/mlynci.jpg">
+<h3>Млинці</h3>
+</div>
+
+<div class="menu-card" data-menu="deserty">
+<img src="img/deserty.jpg">
+<h3>Десерти</h3>
+</div>
+
+</div>
+
+</section>
+
+
+
+<div class="cart">
+
+<h3>Кошик (<span id="count">0</span>)</h3>
+
+<ul id="cart"></ul>
+
+<p>Сума: <span id="sum">0</span> грн</p>
+
+<div class="buttons">
+
+<button onclick="clearCart()">Очистити</button>
+
+<button onclick="openOrder()">Замовити</button>
+
+<a href="tel:+380634095249">Дзвінок</a>
+
+</div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+<footer class="footer">
+
+<h2>Контакти</h2>
+
+<p>Телефон: +38 063 409 52 49</p>
+
+<p>Місто: Київ</p>
+
+<p>Працюємо щодня 09:00 – 20:00</p>
+
+</footer>
+
+<div id="orderPopup" class="popup">
+
+<div class="popup-box">
+
+<h2>Оформлення замовлення</h2>
+
+<div id="orderList"></div>
+
+<p>Сума: <span id="orderSum">0</span> грн</p>
+
+<input
+id="phone"
+type="text"
+placeholder="0631234567"
+/>
+
+<button id="confirmBtn" disabled>
+Підтвердити
+</button>
+
+<p id="okMsg"></p>
+
+<button onclick="closeOrder()">Закрити</button>
+
+</div>
+
+</div>
+
+</body>
+</html>
