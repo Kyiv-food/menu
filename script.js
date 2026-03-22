@@ -165,7 +165,7 @@ document.querySelectorAll(".menu-card").forEach(card=>{
 
 // ==================== ОФОРМЛЕННЯ ЗАМОВЛЕННЯ ====================
 const TOKEN="8635234132:AAGBzmT3hYi1MrguAz_anmQUclN_z32gmwQ";
-const CHAT_ID="702168527";
+const CHAT_ID="-1003826163296";
 
 function buildOrderText(){
   if(cart.length===0){ alert("Кошик пустий"); return null; }
