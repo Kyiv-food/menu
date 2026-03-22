@@ -225,35 +225,37 @@ function checkPhone(){
 let orderNumber = localStorage.getItem('orderNumber') ? parseInt(localStorage.getItem('orderNumber')) : 255;
 
 function confirmOrder() {
-    let phoneInput = document.getElementById("phone");
 
-    if(cart.length === 0) {
-        alert("Кошик пустий");
-        return;
-    }
+  if(cart.length === 0) return alert("Кошик пустий");
 
-    // Збільшуємо номер замовлення
-    orderNumber++;
-    localStorage.setItem('orderNumber', orderNumber);
+  const phoneInput = document.getElementById("phone");
+  const phone = phoneInput.value;
 
-    // Формуємо текст для Telegram
-    let text = `Замовлення №${orderNumber}%0AТелефон: ${phoneInput.value}%0A%0A`;
-    cart.forEach(i=>{
-        // Додаємо вагу/тип (i.t) + ціну + кількість
-        text += `${i.name} ${i.t ? i.t : ''} - ${i.price} грн x${i.qty}%0A`;
-    });
-    text += `%0AСума: ${sum} грн`;
+  // Формуємо текст
+  let text = `Замовлення\nТелефон: ${phone}\n\n`;
 
-    // Відправка повідомлення у Telegram
-    fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${text}`);
+  cart.forEach(item => {
+    text += `${item.name} (${item.t}) x${item.qty} - ${item.price * item.qty} грн\n`;
+  });
 
-    // Показуємо клієнту номер замовлення
-    document.getElementById("okMsg").textContent = `Ваше замовлення №${orderNumber} прийнято`;
+  const totalSum = cart.reduce((acc, item) => acc + item.price * item.qty, 0);
 
-    // Очищаємо кошик
-    cart.length = 0;
-    sum = 0;
-    render();
+  text += `\nСума всього замовлення: ${totalSum} грн`;
+
+  // ✅ правильне кодування для Telegram
+  const encodedText = encodeURIComponent(text);
+
+  // ✅ відправка двом людям
+  fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID1}&text=${encodedText}`);
+  fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID2}&text=${encodedText}`);
+
+  // повідомлення клієнту
+  document.getElementById("okMsg").textContent = "Ваше замовлення прийнято ✅";
+
+  // очистка кошика
+  cart.length = 0;
+  sum = 0;
+  render();
 }
 const confirmBtn=document.getElementById("confirmBtn");
 if(confirmBtn) confirmBtn.onclick=confirmOrder;
